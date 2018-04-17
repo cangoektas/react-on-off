@@ -22,10 +22,10 @@ test("state defaults to off", () => {
   const root = ReactDOM.render(
     <OnOff>
       {({ on, off }) => (
-        <div>
+        <>
           <span className="on">{String(on)}</span>
           <span className="off">{String(off)}</span>
-        </div>
+        </>
       )}
     </OnOff>,
     container
@@ -66,10 +66,10 @@ test("setOn updates the state to on", () => {
   const root = ReactDOM.render(
     <OnOff>
       {({ on, setOn }) => (
-        <div>
+        <>
           <span>{String(on)}</span>
           <button onClick={setOn}>Update</button>
-        </div>
+        </>
       )}
     </OnOff>,
     container
@@ -85,10 +85,10 @@ test("setOff updates the state to off", () => {
   const root = ReactDOM.render(
     <OnOff defaultOn={true}>
       {({ on, setOff }) => (
-        <div>
+        <>
           <span>{String(on)}</span>
           <button onClick={setOff}>Update</button>
-        </div>
+        </>
       )}
     </OnOff>,
     container
@@ -104,10 +104,10 @@ test("toggle toggles the state", () => {
   const root = ReactDOM.render(
     <OnOff>
       {({ on, toggle }) => (
-        <div>
+        <>
           <span>{String(on)}</span>
           <button onClick={toggle}>Toggle</button>
-        </div>
+        </>
       )}
     </OnOff>,
     container
@@ -126,7 +126,7 @@ test("onChange is triggered only when state changes", () => {
   const root = ReactDOM.render(
     <OnOff onChange={onChange}>
       {({ setOn, setOff, toggle }) => (
-        <div>
+        <>
           <button className="setOn" onClick={setOn}>
             setOn
           </button>
@@ -136,7 +136,7 @@ test("onChange is triggered only when state changes", () => {
           <button className="toggle" onClick={toggle}>
             toggle
           </button>
-        </div>
+        </>
       )}
     </OnOff>,
     container

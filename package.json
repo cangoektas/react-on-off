@@ -9,11 +9,11 @@
   ],
   "scripts": {
     "build": "rollup --config",
-    "flow": "flow",
     "test": "jest",
     "precommit": "lint-staged",
     "prepublish": "npm run build"
   },
+  "dependencies": {},
   "peerDependencies": {
     "react": ">=16",
     "prop-types": ">=15.5.7"
@@ -68,6 +68,5 @@
       "react",
       "react-dom"
     ]
-  },
-  "dependencies": {}
+  }
 }
