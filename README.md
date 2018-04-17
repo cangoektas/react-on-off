@@ -52,7 +52,7 @@ ReactDOM.render(
 
 A component that encapsulates state management for a single, independent on/off
 state. Useful whenever you want to render something that has two states. It
-exposes the current state and methods to update the state through a render prop.
+exposes the current state and functions to update the state through a render prop.
 
 #### Props
 
