@@ -15,6 +15,8 @@
   * [OnOff](#onoff)
     * [Props](#props)
     * [Render object](#render-object)
+  * [OnOffCollection](#onoffcollection)
+  * [OnOffItem](#onoffitem)
 * [Inspiration](#inspiration)
 * [LICENSE](#license)
 
@@ -75,6 +77,14 @@ single argument, an object with the following properties:
 | `setOn`  | `function` | Sets the state to on.                                                  |
 | `setOff` | `function` | Sets the state to off.                                                 |
 | `toggle` | `function` | Toggles the state (i.e. when it's on, will set to off and vice versa). |
+
+### OnOffCollection
+
+// TODO
+
+### OnOffItem
+
+// TODO
 
 ## Inspiration
 
