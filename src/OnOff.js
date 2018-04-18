@@ -26,9 +26,9 @@ export default class OnOff extends React.Component {
   }
 
   setOnState = on => {
-    const previousOn = this.state.on;
+    const prevOn = this.state.on;
 
-    this.setState({ on }, () => on !== previousOn && this.props.onChange(on));
+    this.setState({ on }, () => on !== prevOn && this.props.onChange(on));
   };
 
   setOn = () => this.setOnState(true);

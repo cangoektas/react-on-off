@@ -23,7 +23,7 @@
 ## Installation
 
 ```sh
-npm install react-on-off
+npm install --save react-on-off
 # or
 yarn add react-on-off
 ```
