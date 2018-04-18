@@ -5,8 +5,7 @@ export default {
   plugins: [
     babel({
       presets: [["@babel/env", { modules: false }], "@babel/react"],
-      plugins: ["@babel/plugin-proposal-class-properties"],
-      exclude: "node_modules/**"
+      plugins: ["@babel/plugin-proposal-class-properties"]
     })
   ],
   output: [
