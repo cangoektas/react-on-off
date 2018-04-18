@@ -11,7 +11,7 @@ export default class OnOff extends React.Component {
 
   static defaultProps = {
     defaultOn: false,
-    on: undefined,
+    on: null,
     onChange: () => {}
   };
 

@@ -32,10 +32,10 @@ yarn add react-on-off
 
 ```js
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { OnOff } from "react-on-off";
 
-ReactDOM.render(
+render(
   <OnOff>
     {({ on, toggle }) => (
       <>
@@ -52,7 +52,7 @@ ReactDOM.render(
 
 ### OnOff
 
-A component that encapsulates state management for a single, independent on/off
+Encapsulates state management for a single, independent on/off
 state. Useful whenever you want to render something that has two states. It
 exposes the current state and functions to update the state through a render prop.
 
