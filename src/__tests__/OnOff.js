@@ -1,6 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import ReactTestUtils from "react-dom/test-utils";
+import { render } from "react-dom";
+import TestUtils from "react-dom/test-utils";
 
 import { OnOff } from "..";
 
@@ -11,51 +11,48 @@ beforeEach(() => {
 
 test("renders without crashing", () => {
   expect(() =>
-    ReactDOM.render(
-      <OnOff>{() => <span>Hello, world!</span>}</OnOff>,
-      container
-    )
+    render(<OnOff>{() => <span>Hello, world!</span>}</OnOff>, container)
   ).not.toThrow();
 });
 
 test("state defaults to off", () => {
-  const root = ReactDOM.render(
+  const root = render(
     <OnOff>
       {({ on, off }) => (
         <>
-          <span className="on">{String(on)}</span>
-          <span className="off">{String(off)}</span>
+          <span>{String(on)}</span>
+          <span>{String(off)}</span>
         </>
       )}
     </OnOff>,
     container
   );
-  const spanOn = ReactTestUtils.findRenderedDOMComponentWithClass(root, "on");
-  const spanOff = ReactTestUtils.findRenderedDOMComponentWithClass(root, "off");
+  const spans = TestUtils.scryRenderedDOMComponentsWithTag(root, "span");
+  const [spanOn, spanOff] = spans;
 
   expect(spanOn.textContent).toEqual("false");
   expect(spanOff.textContent).toEqual("true");
 });
 
 test("allows to set initial state", () => {
-  const root = ReactDOM.render(
+  const root = render(
     <OnOff defaultOn={true}>{({ on }) => <span>{String(on)}</span>}</OnOff>,
     container
   );
-  const span = ReactTestUtils.findRenderedDOMComponentWithTag(root, "span");
+  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
 
   expect(span.textContent).toEqual("true");
 });
 
 test("allows state to be controlled", () => {
-  let root = ReactDOM.render(
+  let root = render(
     <OnOff on={true}>{({ on }) => <span>{String(on)}</span>}</OnOff>,
     container
   );
-  const span = ReactTestUtils.findRenderedDOMComponentWithTag(root, "span");
+  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
 
   expect(span.textContent).toEqual("true");
-  ReactDOM.render(
+  render(
     <OnOff on={false}>{({ on }) => <span>{String(on)}</span>}</OnOff>,
     container
   );
@@ -63,7 +60,7 @@ test("allows state to be controlled", () => {
 });
 
 test("setOn updates the state to on", () => {
-  const root = ReactDOM.render(
+  const root = render(
     <OnOff>
       {({ on, setOn }) => (
         <>
@@ -74,15 +71,15 @@ test("setOn updates the state to on", () => {
     </OnOff>,
     container
   );
-  const span = ReactTestUtils.findRenderedDOMComponentWithTag(root, "span");
-  const button = ReactTestUtils.findRenderedDOMComponentWithTag(root, "button");
+  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
+  const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
-  ReactTestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("true");
 });
 
 test("setOff updates the state to off", () => {
-  const root = ReactDOM.render(
+  const root = render(
     <OnOff defaultOn={true}>
       {({ on, setOff }) => (
         <>
@@ -93,15 +90,15 @@ test("setOff updates the state to off", () => {
     </OnOff>,
     container
   );
-  const span = ReactTestUtils.findRenderedDOMComponentWithTag(root, "span");
-  const button = ReactTestUtils.findRenderedDOMComponentWithTag(root, "button");
+  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
+  const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
-  ReactTestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("false");
 });
 
 test("toggle toggles the state", () => {
-  const root = ReactDOM.render(
+  const root = render(
     <OnOff>
       {({ on, toggle }) => (
         <>
@@ -112,57 +109,41 @@ test("toggle toggles the state", () => {
     </OnOff>,
     container
   );
-  const span = ReactTestUtils.findRenderedDOMComponentWithTag(root, "span");
-  const button = ReactTestUtils.findRenderedDOMComponentWithTag(root, "button");
+  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
+  const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
-  ReactTestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("true");
-  ReactTestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("false");
 });
 
 test("onChange is triggered only when state changes", () => {
   const onChange = jest.fn();
-  const root = ReactDOM.render(
+  const root = render(
     <OnOff onChange={onChange}>
       {({ setOn, setOff, toggle }) => (
         <>
-          <button className="setOn" onClick={setOn}>
-            setOn
-          </button>
-          <button className="setOff" onClick={setOff}>
-            setOff
-          </button>
-          <button className="toggle" onClick={toggle}>
-            toggle
-          </button>
+          <button onClick={setOn}>setOn</button>
+          <button onClick={setOff}>setOff</button>
+          <button onClick={toggle}>toggle</button>
         </>
       )}
     </OnOff>,
     container
   );
-  const setOnButton = ReactTestUtils.findRenderedDOMComponentWithClass(
-    root,
-    "setOn"
-  );
-  const setOffButton = ReactTestUtils.findRenderedDOMComponentWithClass(
-    root,
-    "setOff"
-  );
-  const toggleButton = ReactTestUtils.findRenderedDOMComponentWithClass(
-    root,
-    "toggle"
-  );
+  const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
+  const [setOnButton, setOffButton, toggleButton] = buttons;
 
-  ReactTestUtils.Simulate.click(toggleButton);
+  TestUtils.Simulate.click(toggleButton);
   expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenLastCalledWith(true);
-  ReactTestUtils.Simulate.click(setOffButton);
-  ReactTestUtils.Simulate.click(setOffButton);
+  TestUtils.Simulate.click(setOffButton);
+  TestUtils.Simulate.click(setOffButton);
   expect(onChange).toHaveBeenCalledTimes(2);
   expect(onChange).toHaveBeenLastCalledWith(false);
-  ReactTestUtils.Simulate.click(setOnButton);
-  ReactTestUtils.Simulate.click(setOnButton);
+  TestUtils.Simulate.click(setOnButton);
+  TestUtils.Simulate.click(setOnButton);
   expect(onChange).toHaveBeenCalledTimes(3);
   expect(onChange).toHaveBeenLastCalledWith(true);
 });

@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rollup --config",
-    "test": "jest",
+    "test": "jest --bail",
     "precommit": "lint-staged",
     "prepublish": "npm run build"
   },
