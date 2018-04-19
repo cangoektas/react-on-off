@@ -1,6 +1,7 @@
 import babel from "rollup-plugin-babel";
+import uglify from "rollup-plugin-uglify";
 
-export default {
+const config = {
   input: "src/index.js",
   plugins: [
     babel({
@@ -19,3 +20,9 @@ export default {
     }
   ]
 };
+
+if (process.env.NODE_ENV === "production") {
+  config.plugins.push(uglify());
+}
+
+export default config;
