@@ -13,9 +13,11 @@
     "precommit": "lint-staged",
     "prepublish": "npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-lifecycles-compat": "^3.0.2"
+  },
   "peerDependencies": {
-    "react": ">=16.3",
+    "react": ">=0.14.9",
     "prop-types": ">=15.5.7"
   },
   "devDependencies": {
