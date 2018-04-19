@@ -1,6 +1,8 @@
 <img src="https://cdn.rawgit.com/cangoektas/react-on-off/master/assets/logo.svg" alt="react-on-off" height="48">
 
-> Flexible React components to manage on/off states
+Encapsulates state management for a single, independent on/off state. Useful
+whenever you want to render something that has two states. It exposes the
+current state and functions to update the state through a render prop.
 
 [![Travis](https://img.shields.io/travis/cangoektas/react-on-off.svg?style=flat-square)](https://travis-ci.org/cangoektas/react-on-off)
 [![Codecov](https://img.shields.io/codecov/c/github/cangoektas/react-on-off.svg?style=flat-square)](https://codecov.io/gh/cangoektas/react-on-off)
@@ -11,12 +13,8 @@
 
 * [Installation](#installation)
 * [Usage](#usage)
-* [Components](#components)
-  * [OnOff](#onoff)
-    * [Props](#props)
-    * [Render object](#render-object)
-  * [OnOffCollection](#onoffcollection)
-  * [OnOffItem](#onoffitem)
+* [Props](#props)
+* [Render object](#render-object)
 * [Inspiration](#inspiration)
 * [LICENSE](#license)
 
@@ -33,7 +31,7 @@ yarn add react-on-off
 ```js
 import React from "react";
 import { render } from "react-dom";
-import { OnOff } from "react-on-off";
+import OnOff from "react-on-off";
 
 render(
   <OnOff>
@@ -48,24 +46,16 @@ render(
 );
 ```
 
-## Components
-
-### OnOff
-
-Encapsulates state management for a single, independent on/off
-state. Useful whenever you want to render something that has two states. It
-exposes the current state and functions to update the state through a render prop.
-
-#### Props
+## Props
 
 | Prop                        | Type       | Default | Description                                                                              |
 | --------------------------- | ---------- | ------- | ---------------------------------------------------------------------------------------- |
 | `defaultOn` <br> _optional_ | `boolean`  | `false` | The initial `on` state.                                                                  |
 | `on` <br> _optional_        | `boolean`  | –       | Control prop if you want to control the state by yourself.                               |
 | `onChange` <br> _optional_  | `function` | –       | Called whenever the state changes with the new `on` state.                               |
-| `children` <br> _required_  | `function` | –       | A renedr prop. This is where you render whatever you want based on the state of `OnOff`. |
+| `children` <br> _required_  | `function` | –       | A render prop. This is where you render whatever you want based on the state of `OnOff`. |
 
-#### Render object
+## Render object
 
 `OnOff` expects the `children` prop to be a render prop. It is invoked with a
 single argument, an object with the following properties:
@@ -77,14 +67,6 @@ single argument, an object with the following properties:
 | `setOn`  | `function` | Sets the state to on.                                                  |
 | `setOff` | `function` | Sets the state to off.                                                 |
 | `toggle` | `function` | Toggles the state (i.e. when it's on, will set to off and vice versa). |
-
-### OnOffCollection
-
-// TODO
-
-### OnOffItem
-
-// TODO
 
 ## Inspiration
 
