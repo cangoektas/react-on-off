@@ -57,7 +57,7 @@ render(
 
 ## Render object
 
-`OnOff` expects the `children` prop to be a render prop. It is invoked with a
+`OnOff` expects the `children` prop to be a render prop. It is called with a
 single argument, an object with the following properties:
 
 | Property | Type       | Description                                                            |
@@ -70,7 +70,7 @@ single argument, an object with the following properties:
 
 ## Inspiration
 
-// TODO
+All credit for the design and API should go to [`react-toggled`](https://github.com/kentcdodds/react-toggled). If you only need to render a toggle component, go with `react-toggled` since it comes with functions that help with accessibility. If you're handling accessibility by yourself or you want to render anything else with two states, `react-on-off` is for you.
 
 ## LICENSE
 
