@@ -1,3 +1,3 @@
 import OnOff from "./OnOff";
 
-export { OnOff };
+export default OnOff;
