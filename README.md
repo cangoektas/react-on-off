@@ -3,9 +3,12 @@
 Encapsulates state management for a single, independent on/off state. Useful
 whenever you want to render something that has two states. It exposes the
 current state and functions to update the state through a render prop.
+Compatible with React 0.14.9+.
 
 [![Travis](https://img.shields.io/travis/cangoektas/react-on-off.svg?style=flat-square)](https://travis-ci.org/cangoektas/react-on-off)
 [![Codecov](https://img.shields.io/codecov/c/github/cangoektas/react-on-off.svg?style=flat-square)](https://codecov.io/gh/cangoektas/react-on-off)
+[![size](http://img.badgesize.io/https://unpkg.com/react-on-off@0.1.0/lib/react-on-off.min.js?label=size&style=flat-square)](https://unpkg.com/react-on-off@0.1.0/lib/)
+[![gzip size](http://img.badgesize.io/https://unpkg.com/react-on-off@0.1.0/lib/react-on-off.min.js?compression=gzip&label=gzip%20size&style=flat-square)](https://unpkg.com/react-on-off@0.1.0/lib/)
 [![npm version](https://img.shields.io/npm/v/react-on-off.svg?style=flat-square)](https://www.npmjs.com/package/react-on-off)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
@@ -24,6 +27,13 @@ current state and functions to update the state through a render prop.
 npm install --save react-on-off
 # or
 yarn add react-on-off
+```
+
+You can also use UMD builds with unpkg:
+
+```html
+<script crossorigin src="https://unpkg.com/react-on-off@0.1.0/lib/react-on-off.js"></script>
+<script crossorigin src="https://unpkg.com/react-on-off@0.1.0/lib/react-on-off.min.js"></script>
 ```
 
 ## Usage
