@@ -2,13 +2,13 @@
   "name": "react-on-off",
   "version": "0.0.5",
   "description": "Flexible React component to manage a single, independent on/off state",
-  "main": "lib/index.cjs.js",
-  "module": "lib/index.es.js",
+  "main": "lib/react-on-off.cjs.js",
+  "module": "lib/react-on-off.es.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "rollup --config",
+    "build": "rollup -c rollup.config.dev.js && rollup -c rollup.config.prod.js",
     "test": "jest --bail",
     "precommit": "lint-staged",
     "prepublish": "npm run build"
@@ -27,6 +27,7 @@
     "@babel/preset-react": "^7.0.0-beta.44",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^22.4.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
     "codecov": "^3.0.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
@@ -36,7 +37,9 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "rollup": "^0.57.1",
-    "rollup-plugin-babel": "^4.0.0-beta.4"
+    "rollup-plugin-babel": "^4.0.0-beta.4",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "author": "Can Göktas <can.goektas@gmail.com>",
   "license": "MIT",
