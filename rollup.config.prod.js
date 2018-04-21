@@ -16,8 +16,7 @@ export default {
     format: "umd",
     name: "OnOff",
     globals: {
-      react: "React",
-      "prop-types": "PropTypes"
+      react: "React"
     }
   }
 };

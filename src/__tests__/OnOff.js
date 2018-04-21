@@ -36,7 +36,7 @@ test("state defaults to off", () => {
 
 test("allows to set initial state", () => {
   const root = render(
-    <OnOff defaultOn={true}>{({ on }) => <span>{String(on)}</span>}</OnOff>,
+    <OnOff defaultOn>{({ on }) => <span>{String(on)}</span>}</OnOff>,
     container
   );
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
@@ -45,7 +45,7 @@ test("allows to set initial state", () => {
 });
 
 test("allows state to be controlled", () => {
-  let root = render(
+  const root = render(
     <OnOff on={true}>{({ on }) => <span>{String(on)}</span>}</OnOff>,
     container
   );
@@ -80,7 +80,7 @@ test("setOn updates the state to on", () => {
 
 test("setOff updates the state to off", () => {
   const root = render(
-    <OnOff defaultOn={true}>
+    <OnOff defaultOn>
       {({ on, setOff }) => (
         <>
           <span>{String(on)}</span>

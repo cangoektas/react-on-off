@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-export default class OnOff extends React.Component {
+export default class OnOff extends Component {
   static propTypes = {
     defaultOn: PropTypes.bool,
     on: PropTypes.bool,
@@ -11,7 +11,6 @@ export default class OnOff extends React.Component {
 
   static defaultProps = {
     defaultOn: false,
-    on: undefined,
     onChange: () => {}
   };
 
