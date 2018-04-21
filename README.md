@@ -3,7 +3,6 @@
 Encapsulates state management for a single, independent on/off state. Useful
 whenever you want to render something that has two states. It exposes the
 current state and functions to update the state through a render prop.
-Compatible with React 0.14.9+.
 
 [![Travis](https://img.shields.io/travis/cangoektas/react-on-off.svg?style=flat-square)](https://travis-ci.org/cangoektas/react-on-off)
 [![Codecov](https://img.shields.io/codecov/c/github/cangoektas/react-on-off.svg?style=flat-square)](https://codecov.io/gh/cangoektas/react-on-off)
