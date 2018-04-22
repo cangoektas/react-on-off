@@ -1,6 +1,6 @@
 {
   "name": "react-on-off",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "React components that encapsulate state management for on/off states.",
   "main": "lib/react-on-off.cjs.js",
   "module": "lib/react-on-off.es.js",
@@ -11,7 +11,7 @@
     "build": "rollup -c rollup.config.dev.js && rollup -c rollup.config.prod.js",
     "test": "jest --bail",
     "precommit": "lint-staged",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "dependencies": {},
   "peerDependencies": {
