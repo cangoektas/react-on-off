@@ -25,5 +25,8 @@ export default {
         "prop-types": "PropTypes"
       }
     }
-  ]
+  ],
+  watch: {
+    include: "src/**"
+  }
 };
