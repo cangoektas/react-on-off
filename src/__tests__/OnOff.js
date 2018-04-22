@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import TestUtils from "react-dom/test-utils";
 
-import OnOff from "../OnOff";
+import { OnOff } from "..";
 
 let container;
 beforeEach(() => {
