@@ -2,13 +2,13 @@
   <img src="https://cdn.rawgit.com/cangoektas/react-on-off/master/assets/logo.svg" alt="react-on-off" height="48">
   <h3 align="center">react-on-off</h3>
   <p align="center">
-    React components that encapsulate state management for on/off states.
+    Flexible React components to manage on/off states
   </p>
   <p align="center">
     <a href="https://travis-ci.org/cangoektas/react-on-off" alt="Build status"><img src="https://img.shields.io/travis/cangoektas/react-on-off.svg?style=flat-square"></a>
   <a href="https://codecov.io/gh/cangoektas/react-on-off" alt="Code coverage"><img src="https://img.shields.io/codecov/c/github/cangoektas/react-on-off.svg?style=flat-square"></a>
-  <a href="https://unpkg.com/react-on-off/lib/" alt="Build size"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off/lib/react-on-off.min.js?label=size&style=flat-square"></a>
-  <a href="https://unpkg.com/react-on-off/lib/" alt="Build size gzipped"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off/lib/react-on-off.min.js?compression=gzip&label=gzip%20size&style=flat-square"></a>
+  <a href="https://unpkg.com/react-on-off@^1/lib/" alt="Build size"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/lib/react-on-off.min.js?label=size&style=flat-square"></a>
+  <a href="https://unpkg.com/react-on-off@^1/lib/" alt="Build size gzipped"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/lib/react-on-off.min.js?compression=gzip&label=gzip%20size&style=flat-square"></a>
   <a href="https://www.npmjs.com/package/react-on-off" alt="npm version"><img src="https://img.shields.io/npm/v/react-on-off.svg?style=flat-square"></a>
   </p>
 </p>
@@ -29,12 +29,17 @@
 Many UI components either have a single or multiple on/off states and require
 you to write the same type of stateful React components over and over again.
 It's not hard, but it takes time and duplicates code. Instead, we can extract
-common state requirements and reuse generic, flexible and well-tested components
-to save time and bandwidth.
+common state requirements into generic, flexible and well-tested components
+and reuse them to save time and bandwidth.
 
 ## Inspiration
 
-All credit for the design and API should go to [`react-toggled`](https://github.com/kentcdodds/react-toggled). If you only need to render a toggle component, go with `react-toggled` since it comes with functions that help with accessibility. If you're handling accessibility by yourself or you need to manage multiple on/off states, `react-on-off` is for you.
+All credit for the design and API should go to
+[`react-toggled`](https://github.com/kentcdodds/react-toggled). If you only need
+to render a toggle component, go with `react-toggled` since it comes with
+functions that help with accessibility. If you're handling accessibility by
+yourself or you need to manage multiple on/off states, `react-on-off` is for
+you.
 
 ## Installation
 

@@ -1,7 +1,7 @@
 {
   "name": "react-on-off",
   "version": "1.0.0",
-  "description": "React components that encapsulate state management for on/off states.",
+  "description": "Flexible React components to manage on/off states",
   "main": "lib/react-on-off.cjs.js",
   "module": "lib/react-on-off.es.js",
   "files": [
