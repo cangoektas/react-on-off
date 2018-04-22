@@ -13,22 +13,19 @@ export default class OnOffCollection extends Component {
   };
 
   static defaultProps = {
+    defaultOn: null,
     onChange: noop
   };
-
-  static mergeOnIntoState(state, on) {
-    return {
-      ...state,
-      context: { ...state.context, on }
-    };
-  }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.on === undefined || nextProps.on === prevState.context.on) {
       return null;
     }
 
-    return OnOffCollection.mergeOnIntoState(prevState, nextProps.on);
+    return {
+      ...prevState,
+      context: { ...prevState.context, on: nextProps.on }
+    };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -39,16 +36,19 @@ export default class OnOffCollection extends Component {
     const prevOn = this.state.context.on;
 
     this.setState(
-      prevState => OnOffCollection.mergeOnIntoState(prevState, id),
+      prevState => ({
+        ...prevState,
+        context: { ...prevState.context, on: id }
+      }),
       () => id !== prevOn && this.props.onChange(id)
     );
   };
 
   setOn = id => this.setOnState(id);
-  setOff = () => this.setOnState(undefined);
+  setOff = () => this.setOnState(null);
   toggle = id => {
     const prevOn = this.state.context.on;
-    const nextOn = id !== prevOn ? id : undefined;
+    const nextOn = id !== prevOn ? id : null;
     this.setOnState(nextOn);
   };
 
@@ -56,7 +56,7 @@ export default class OnOffCollection extends Component {
 
   unregisterItem = id => {
     if (id === this.state.context.on) {
-      this.setOnState(undefined);
+      this.setOnState(null);
     }
   };
 

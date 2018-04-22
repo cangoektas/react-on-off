@@ -241,7 +241,7 @@ test("onChange is called only when state changes", () => {
   expect(onChange).toHaveBeenLastCalledWith("2");
   TestUtils.Simulate.click(setOffButton2);
   expect(onChange).toHaveBeenCalledTimes(2);
-  expect(onChange).toHaveBeenLastCalledWith(undefined);
+  expect(onChange).toHaveBeenLastCalledWith(null);
   TestUtils.Simulate.click(setOffButton2);
   expect(onChange).toHaveBeenCalledTimes(2);
   TestUtils.Simulate.click(toggleButton1);
@@ -283,7 +283,7 @@ test("resets the state when items unmount", () => {
   expect(span2.textContent).toEqual("false");
   TestUtils.Simulate.click(toggleItemButton1);
   expect(onChange).toHaveBeenCalledTimes(1);
-  expect(onChange).toHaveBeenLastCalledWith(undefined);
+  expect(onChange).toHaveBeenLastCalledWith(null);
   TestUtils.Simulate.click(toggleItemButton1);
   const newSpans = TestUtils.scryRenderedDOMComponentsWithTag(root, "span");
   const [newSpan1, newSpan2] = newSpans;
