@@ -24,6 +24,10 @@ export default class OnOff extends Component {
     return { on: nextProps.on };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.on !== nextState.on;
+  }
+
   setOnState = on => {
     const prevOn = this.state.on;
 

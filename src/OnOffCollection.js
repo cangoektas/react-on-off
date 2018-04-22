@@ -31,6 +31,10 @@ export default class OnOffCollection extends Component {
     return OnOffCollection.mergeOnIntoState(prevState, nextProps.on);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.context.on !== nextState.context.on;
+  }
+
   setOnState = id => {
     const prevOn = this.state.context.on;
 
