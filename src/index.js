@@ -1,3 +1,5 @@
 import OnOff from "./OnOff";
+import OnOffCollection from "./OnOffCollection";
+import OnOffItem from "./OnOffItem";
 
-export default OnOff;
+export { OnOff, OnOffCollection, OnOffItem };

@@ -1,7 +1,7 @@
 {
   "name": "react-on-off",
   "version": "0.1.0",
-  "description": "Flexible React component to manage a single, independent on/off state",
+  "description": "React components that encapsulate state management for on/off states.",
   "main": "lib/react-on-off.cjs.js",
   "module": "lib/react-on-off.es.js",
   "files": [
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.44",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.44",
     "@babel/preset-env": "^7.0.0-beta.44",
     "@babel/preset-react": "^7.0.0-beta.44",
     "babel-core": "^7.0.0-bridge.0",
@@ -63,6 +64,9 @@
   },
   "jest": {
     "coverageDirectory": "coverage",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   }
 }
