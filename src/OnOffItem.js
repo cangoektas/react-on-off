@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Consumer } from "./Context";
 
-class OnOffItem extends Component {
+class OnOffItemImpl extends Component {
   static propTypes = {
     id: PropTypes.string,
     children: PropTypes.func.isRequired,
@@ -53,15 +53,15 @@ class OnOffItem extends Component {
   }
 }
 
-const OnOffItemConsumer = props => (
+const OnOffItem = props => (
   <Consumer>
-    {contextValue => <OnOffItem {...props} context={contextValue} />}
+    {contextValue => <OnOffItemImpl {...props} context={contextValue} />}
   </Consumer>
 );
 
-OnOffItemConsumer.propTypes = {
+OnOffItem.propTypes = {
   id: PropTypes.string,
   children: PropTypes.func.isRequired
 };
 
-export default OnOffItemConsumer;
+export default OnOffItem;
