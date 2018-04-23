@@ -45,7 +45,13 @@ export default class OnOffCollection extends Component {
   };
 
   setOn = id => this.setOnState(id);
-  setOff = () => this.setOnState(null);
+
+  setOff = id => {
+    if (id === this.state.context.on) {
+      this.setOnState(null);
+    }
+  };
+
   toggle = id => {
     const prevOn = this.state.context.on;
     const nextOn = id !== prevOn ? id : null;
