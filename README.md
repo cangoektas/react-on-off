@@ -15,8 +15,6 @@
 
 ## Table of contents
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/cangoektas/react-on-off.svg)](https://greenkeeper.io/)
-
 * [Motivation](#motivation)
 * [Inspiration](#inspiration)
 * [Installation](#installation)
