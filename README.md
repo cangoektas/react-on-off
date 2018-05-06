@@ -22,7 +22,8 @@
   * [OnOff](#onoff)
   * [OnOffCollection](#onoffcollection)
   * [OnOffItem](#onoffitem)
-* [LICENSE](#license)
+* [Related](#related)
+* [License](#license)
 
 ## Motivation
 
@@ -174,6 +175,11 @@ single argument, an object with the following properties:
 | `setOff` | `function` | Sets the state of the item to off.                                                 |
 | `toggle` | `function` | Toggles the state of the item (i.e. when it's on, will set to off and vice versa). |
 
-## LICENSE
+## Related
+
+* [react-toggled](https://github.com/kentcdodds/react-toggled)
+* [react-powerplug](https://github.com/renatorib/react-powerplug)
+
+## License
 
 MIT
