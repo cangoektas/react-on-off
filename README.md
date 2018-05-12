@@ -53,8 +53,8 @@ yarn add react-on-off
 You can also use UMD builds from unpkg:
 
 ```html
-<script crossorigin src="https://unpkg.com/react-on-off/lib/react-on-off.js"></script>
-<script crossorigin src="https://unpkg.com/react-on-off/lib/react-on-off.min.js"></script>
+<script src="https://unpkg.com/react-on-off/lib/react-on-off.js"></script>
+<script src="https://unpkg.com/react-on-off/lib/react-on-off.min.js"></script>
 ```
 
 ## Components
