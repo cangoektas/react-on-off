@@ -31,7 +31,7 @@ Many UI components either have a single or multiple on/off states and require
 you to write the same type of stateful React components over and over again.
 It's not hard, but it takes time and duplicates code. Instead, we can extract
 common state requirements into generic, flexible and well-tested components
-and reuse them to save time and bandwidth.
+and reuse them.
 
 ## Inspiration
 
