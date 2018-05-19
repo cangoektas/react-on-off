@@ -13,7 +13,7 @@ export default {
   plugins: [
     babel(getBabelConfig({ modules: false })),
     resolve(),
-    minify({ sourceMap: false })
+    minify({ comments: false, sourceMap: false })
   ],
   output: {
     file: "lib/react-on-off.min.js",
