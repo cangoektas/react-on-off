@@ -7,8 +7,8 @@
   <p align="center">
     <a href="https://travis-ci.org/cangoektas/react-on-off" alt="Build status"><img src="https://img.shields.io/travis/cangoektas/react-on-off.svg?style=flat-square"></a>
   <a href="https://codecov.io/gh/cangoektas/react-on-off" alt="Code coverage"><img src="https://img.shields.io/codecov/c/github/cangoektas/react-on-off.svg?style=flat-square"></a>
-  <a href="https://unpkg.com/react-on-off@^1/lib/" alt="Build size"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/lib/react-on-off.min.js?label=size&style=flat-square"></a>
-  <a href="https://unpkg.com/react-on-off@^1/lib/" alt="Build size gzipped"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/lib/react-on-off.min.js?compression=gzip&label=gzip%20size&style=flat-square"></a>
+  <a href="https://unpkg.com/react-on-off@^1/lib/" alt="Build size"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/lib/react-on-off.umd.min.js?label=size&style=flat-square"></a>
+  <a href="https://unpkg.com/react-on-off@^1/lib/" alt="Build size gzipped"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/lib/react-on-off.umd.min.js?compression=gzip&label=gzip%20size&style=flat-square"></a>
   <a href="https://www.npmjs.com/package/react-on-off" alt="npm version"><img src="https://img.shields.io/npm/v/react-on-off.svg?style=flat-square"></a>
   </p>
 </p>

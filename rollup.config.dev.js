@@ -9,15 +9,11 @@ export default {
   plugins: [babel(getBabelConfig({ modules: false })), resolve()],
   output: [
     {
-      file: "lib/react-on-off.cjs.js",
-      format: "cjs"
+      file: "dist/react-on-off.esm.js",
+      format: "esm"
     },
     {
-      file: "lib/react-on-off.es.js",
-      format: "es"
-    },
-    {
-      file: "lib/react-on-off.js",
+      file: "dist/react-on-off.umd.js",
       format: "umd",
       name: "OnOff",
       globals: {

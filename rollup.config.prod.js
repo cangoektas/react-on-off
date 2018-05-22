@@ -16,7 +16,7 @@ export default {
     minify({ comments: false, sourceMap: false })
   ],
   output: {
-    file: "lib/react-on-off.min.js",
+    file: "dist/react-on-off.umd.min.js",
     format: "umd",
     name: "OnOff",
     globals: {
