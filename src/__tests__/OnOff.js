@@ -147,3 +147,33 @@ test("onChange is triggered only when state changes", () => {
   expect(onChange).toHaveBeenCalledTimes(3);
   expect(onChange).toHaveBeenLastCalledWith(true);
 });
+
+test("should not re-render when the state does not change", () => {
+  const onRender = jest.fn();
+  const root = render(
+    <OnOff>
+      {({ setOn, setOff, toggle }) => {
+        onRender();
+
+        return (
+          <>
+            <button onClick={setOn}>setOn</button>
+            <button onClick={setOff}>setOff</button>
+            <button onClick={toggle}>toggle</button>
+          </>
+        );
+      }}
+    </OnOff>,
+    container
+  );
+  const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
+  const [setOnButton, setOffButton, toggleButton] = buttons;
+
+  expect(onRender).toHaveBeenCalledTimes(1);
+  TestUtils.Simulate.click(setOffButton);
+  TestUtils.Simulate.click(setOffButton);
+  expect(onRender).toHaveBeenCalledTimes(1);
+  TestUtils.Simulate.click(setOnButton);
+  TestUtils.Simulate.click(setOnButton);
+  expect(onRender).toHaveBeenCalledTimes(2);
+});
