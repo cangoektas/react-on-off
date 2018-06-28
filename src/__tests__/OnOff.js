@@ -118,7 +118,30 @@ test("toggle toggles the state", () => {
   expect(span.textContent).toEqual("false");
 });
 
-test("onChange is triggered only when state changes", () => {
+test("state does not change when component is controlled", () => {
+  const onChange = jest.fn();
+  const root = render(
+    <OnOff on={false} onChange={onChange}>
+      {({ on, setOn }) => (
+        <>
+          <span>{String(on)}</span>
+          <button onClick={setOn}>setOn</button>
+        </>
+      )}
+    </OnOff>,
+    container
+  );
+  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
+  const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
+  const [setOnButton, setOffButton] = buttons;
+
+  expect(span.textContent).toEqual("false");
+  TestUtils.Simulate.click(setOnButton);
+  expect(span.textContent).toEqual("false");
+  expect(onChange).not.toHaveBeenCalled();
+});
+
+test("onChange is called only when state changes", () => {
   const onChange = jest.fn();
   const root = render(
     <OnOff onChange={onChange}>
@@ -175,5 +198,40 @@ test("should not re-render when the state does not change", () => {
   expect(onRender).toHaveBeenCalledTimes(1);
   TestUtils.Simulate.click(setOnButton);
   TestUtils.Simulate.click(setOnButton);
+  expect(onRender).toHaveBeenCalledTimes(2);
+});
+
+test("should not re-render when the `on` prop does not change", () => {
+  const onRender = jest.fn();
+  render(
+    <OnOff on={false} defaultOn={false} onChange={() => {}}>
+      {({ on }) => {
+        onRender();
+
+        return <span>{String(on)}</span>;
+      }}
+    </OnOff>,
+    container
+  );
+  render(
+    <OnOff on={false} defaultOn={true} onChange={() => {}}>
+      {({ on }) => {
+        onRender();
+
+        return <span>{String(on)}</span>;
+      }}
+    </OnOff>,
+    container
+  );
+  render(
+    <OnOff on={true}>
+      {({ on }) => {
+        onRender();
+
+        return <span>{String(on)}</span>;
+      }}
+    </OnOff>,
+    container
+  );
   expect(onRender).toHaveBeenCalledTimes(2);
 });
