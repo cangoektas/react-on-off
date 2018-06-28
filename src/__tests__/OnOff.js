@@ -15,7 +15,7 @@ test("renders without crashing", () => {
   ).not.toThrow();
 });
 
-test("state defaults to off", () => {
+test("initial state is off", () => {
   const root = render(
     <OnOff>
       {({ on, off }) => (
@@ -34,7 +34,7 @@ test("state defaults to off", () => {
   expect(spanOff.textContent).toEqual("true");
 });
 
-test("allows to set initial state", () => {
+test("initial state can be set", () => {
   const root = render(
     <OnOff defaultOn>{({ on }) => <span>{String(on)}</span>}</OnOff>,
     container
@@ -44,7 +44,7 @@ test("allows to set initial state", () => {
   expect(span.textContent).toEqual("true");
 });
 
-test("allows state to be controlled", () => {
+test("state can be controlled", () => {
   const root = render(
     <OnOff on={true}>{({ on }) => <span>{String(on)}</span>}</OnOff>,
     container
@@ -59,13 +59,25 @@ test("allows state to be controlled", () => {
   expect(span.textContent).toEqual("false");
 });
 
-test("setOn updates the state to on", () => {
+test("`on` takes precedence over `defaultOn`", () => {
+  const root = render(
+    <OnOff on={true} defaultOn={false}>
+      {({ on }) => <span>{String(on)}</span>}
+    </OnOff>,
+    container
+  );
+  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
+
+  expect(span.textContent).toEqual("true");
+});
+
+test("`setOn` updates the state to on", () => {
   const root = render(
     <OnOff>
       {({ on, setOn }) => (
         <>
           <span>{String(on)}</span>
-          <button onClick={setOn}>Update</button>
+          <button onClick={setOn}>setOn</button>
         </>
       )}
     </OnOff>,
@@ -78,13 +90,13 @@ test("setOn updates the state to on", () => {
   expect(span.textContent).toEqual("true");
 });
 
-test("setOff updates the state to off", () => {
+test("`setOff` updates the state to off", () => {
   const root = render(
     <OnOff defaultOn>
       {({ on, setOff }) => (
         <>
           <span>{String(on)}</span>
-          <button onClick={setOff}>Update</button>
+          <button onClick={setOff}>setOff</button>
         </>
       )}
     </OnOff>,
@@ -97,13 +109,13 @@ test("setOff updates the state to off", () => {
   expect(span.textContent).toEqual("false");
 });
 
-test("toggle toggles the state", () => {
+test("`toggle` toggles the state", () => {
   const root = render(
     <OnOff>
       {({ on, toggle }) => (
         <>
           <span>{String(on)}</span>
-          <button onClick={toggle}>Toggle</button>
+          <button onClick={toggle}>toggle</button>
         </>
       )}
     </OnOff>,
@@ -132,16 +144,15 @@ test("state does not change when component is controlled", () => {
     container
   );
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
-  const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
-  const [setOnButton, setOffButton] = buttons;
+  const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
   expect(span.textContent).toEqual("false");
-  TestUtils.Simulate.click(setOnButton);
+  TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("false");
-  expect(onChange).not.toHaveBeenCalled();
+  expect(onChange).toHaveBeenCalledWith(true);
 });
 
-test("onChange is called only when state changes", () => {
+test("`onChange` is called only when state changes", () => {
   const onChange = jest.fn();
   const root = render(
     <OnOff onChange={onChange}>
@@ -171,18 +182,17 @@ test("onChange is called only when state changes", () => {
   expect(onChange).toHaveBeenLastCalledWith(true);
 });
 
-test("should not re-render when the state does not change", () => {
+test("doesn't re-render when the state doesn't change", () => {
   const onRender = jest.fn();
   const root = render(
     <OnOff>
-      {({ setOn, setOff, toggle }) => {
+      {({ setOn, setOff }) => {
         onRender();
 
         return (
           <>
             <button onClick={setOn}>setOn</button>
             <button onClick={setOff}>setOff</button>
-            <button onClick={toggle}>toggle</button>
           </>
         );
       }}
@@ -190,7 +200,7 @@ test("should not re-render when the state does not change", () => {
     container
   );
   const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
-  const [setOnButton, setOffButton, toggleButton] = buttons;
+  const [setOnButton, setOffButton] = buttons;
 
   expect(onRender).toHaveBeenCalledTimes(1);
   TestUtils.Simulate.click(setOffButton);
@@ -201,7 +211,7 @@ test("should not re-render when the state does not change", () => {
   expect(onRender).toHaveBeenCalledTimes(2);
 });
 
-test("should not re-render when the `on` prop does not change", () => {
+test("doesn't re-render when the `on` prop doesn't change", () => {
   const onRender = jest.fn();
   render(
     <OnOff on={false} defaultOn={false} onChange={() => {}}>

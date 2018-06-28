@@ -25,7 +25,7 @@ class OnOffItemImpl extends Component {
     this.props.context.unregisterItem(this.props.id);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, _nextState) {
     const id = this.state.id;
     const prevOn = this.props.context.on;
     const nextOn = nextProps.context.on;
