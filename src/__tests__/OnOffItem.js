@@ -41,7 +41,7 @@ test("state defaults to off", () => {
   expect(spanOff.textContent).toEqual("true");
 });
 
-test("allows to set id", () => {
+test("passes on id prop", () => {
   const root = render(
     <TestWrapper>
       <OnOffItem id="foo">{({ id }) => <span>{String(id)}</span>}</OnOffItem>

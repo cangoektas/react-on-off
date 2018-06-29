@@ -46,7 +46,9 @@ test("initial state can be set", () => {
 
 test("state can be controlled", () => {
   const root = render(
-    <OnOff on={true}>{({ on }) => <span>{String(on)}</span>}</OnOff>,
+    <OnOff on={true} defaultOn={false}>
+      {({ on }) => <span>{String(on)}</span>}
+    </OnOff>,
     container
   );
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
@@ -57,18 +59,6 @@ test("state can be controlled", () => {
     container
   );
   expect(span.textContent).toEqual("false");
-});
-
-test("`on` takes precedence over `defaultOn`", () => {
-  const root = render(
-    <OnOff on={true} defaultOn={false}>
-      {({ on }) => <span>{String(on)}</span>}
-    </OnOff>,
-    container
-  );
-  const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
-
-  expect(span.textContent).toEqual("true");
 });
 
 test("`setOn` updates the state to on", () => {
@@ -86,6 +76,7 @@ test("`setOn` updates the state to on", () => {
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
   const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
+  expect(span.textContent).toEqual("false");
   TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("true");
 });
@@ -105,6 +96,7 @@ test("`setOff` updates the state to off", () => {
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
   const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
+  expect(span.textContent).toEqual("true");
   TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("false");
 });
@@ -124,16 +116,16 @@ test("`toggle` toggles the state", () => {
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
   const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
+  expect(span.textContent).toEqual("false");
   TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("true");
   TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("false");
 });
 
-test("state does not change when component is controlled", () => {
-  const onChange = jest.fn();
+test("state doesn't change when component is controlled", () => {
   const root = render(
-    <OnOff on={false} onChange={onChange}>
+    <OnOff on={false}>
       {({ on, setOn }) => (
         <>
           <span>{String(on)}</span>
@@ -149,7 +141,6 @@ test("state does not change when component is controlled", () => {
   expect(span.textContent).toEqual("false");
   TestUtils.Simulate.click(button);
   expect(span.textContent).toEqual("false");
-  expect(onChange).toHaveBeenCalledWith(true);
 });
 
 test("`onChange` is called only when state changes", () => {
@@ -169,6 +160,7 @@ test("`onChange` is called only when state changes", () => {
   const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
   const [setOnButton, setOffButton, toggleButton] = buttons;
 
+  expect(onChange).toHaveBeenCalledTimes(0);
   TestUtils.Simulate.click(toggleButton);
   expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenLastCalledWith(true);
