@@ -215,6 +215,40 @@ test("`toggle` toggles the item states", () => {
   expect(spanItem2.textContent).toEqual("false");
 });
 
+test("state doesn't change when component is controlled", () => {
+  const root = render(
+    <OnOffCollection on="1">
+      <OnOffItem id="1">
+        {({ on, toggle }) => (
+          <>
+            <span>{String(on)}</span>
+            <button onClick={toggle}>toggle</button>
+          </>
+        )}
+      </OnOffItem>
+      <OnOffItem id="2">
+        {({ on, toggle }) => (
+          <>
+            <span>{String(on)}</span>
+            <button onClick={toggle}>toggle</button>
+          </>
+        )}
+      </OnOffItem>
+    </OnOffCollection>,
+    container
+  );
+  const spans = TestUtils.scryRenderedDOMComponentsWithTag(root, "span");
+  const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
+  const [spanItem1, spanItem2] = spans;
+  const [toggleButtonItem1, toggleButtonItem2] = buttons;
+
+  expect(spanItem1.textContent).toEqual("true");
+  expect(spanItem2.textContent).toEqual("false");
+  TestUtils.Simulate.click(toggleButtonItem2);
+  expect(spanItem1.textContent).toEqual("true");
+  expect(spanItem2.textContent).toEqual("false");
+});
+
 test("`onChange` is called only when state changes", () => {
   const onChange = jest.fn();
   const root = render(
