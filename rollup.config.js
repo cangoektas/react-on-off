@@ -4,7 +4,7 @@ import minify from "rollup-plugin-babel-minify";
 
 const getBabelConfig = require("./get-babel-config");
 
-const mainConfig = {
+const devConfig = {
   input: "src/index.js",
   external: ["react", "prop-types"],
   plugins: [babel(getBabelConfig({ modules: false })), resolve()],
@@ -27,7 +27,7 @@ const mainConfig = {
     include: "src/**"
   }
 };
-const umdConfig = {
+const prodConfig = {
   input: "src/index.js",
   external: ["react", "prop-types"],
   plugins: [
@@ -45,4 +45,4 @@ const umdConfig = {
   }
 };
 
-export default [mainConfig, umdConfig];
+export default [devConfig, prodConfig];
