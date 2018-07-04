@@ -333,3 +333,78 @@ test("resets the state when items unmount", () => {
   expect(spanItem1Updated.textContent).toEqual("false");
   expect(spanItem2Updated.textContent).toEqual("false");
 });
+
+test("doesn't re-render when the state doesn't change", () => {
+  const onRender = jest.fn();
+  const root = render(
+    <OnOffCollection>
+      <OnOffItem>
+        {({ on, setOn, setOff, toggle }) => {
+          onRender();
+
+          return (
+            <>
+              <span>{String(on)}</span>
+              <button onClick={setOn}>setOn</button>
+              <button onClick={setOff}>setOff</button>
+              <button onClick={toggle}>toggle</button>
+            </>
+          );
+        }}
+      </OnOffItem>
+    </OnOffCollection>,
+    container
+  );
+  const buttons = TestUtils.scryRenderedDOMComponentsWithTag(root, "button");
+  const [setOnButton, setOffButton, toggleButton] = buttons;
+
+  expect(onRender).toHaveBeenCalledTimes(1);
+  TestUtils.Simulate.click(setOffButton);
+  TestUtils.Simulate.click(setOffButton);
+  expect(onRender).toHaveBeenCalledTimes(1);
+  TestUtils.Simulate.click(setOnButton);
+  TestUtils.Simulate.click(setOnButton);
+  expect(onRender).toHaveBeenCalledTimes(2);
+});
+
+test("doesn't re-render when the `on` prop doesn't change", () => {
+  const onRender = jest.fn();
+  render(
+    <OnOffCollection on="1" defaultOn="1" onChange={() => {}}>
+      <OnOffItem id="1">
+        {({ on }) => {
+          onRender();
+
+          return <span>{String(on)}</span>;
+        }}
+      </OnOffItem>
+    </OnOffCollection>,
+    container
+  );
+  render(
+    <OnOffCollection on="1" defaultOn={null} onChange={() => {}}>
+      <OnOffItem id="1">
+        {({ on }) => {
+          onRender();
+
+          return <span>{String(on)}</span>;
+        }}
+      </OnOffItem>
+    </OnOffCollection>,
+    container
+  );
+  render(
+    <OnOffCollection on={null}>
+      <OnOffItem id="1">
+        {({ on }) => {
+          onRender();
+
+          return <span>{String(on)}</span>;
+        }}
+      </OnOffItem>
+    </OnOffCollection>,
+    container
+  );
+
+  expect(onRender).toHaveBeenCalledTimes(2);
+});

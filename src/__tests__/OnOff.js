@@ -74,10 +74,10 @@ test("`setOn` updates the state to on", () => {
     container
   );
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
-  const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
+  const setOnButton = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
   expect(span.textContent).toEqual("false");
-  TestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(setOnButton);
   expect(span.textContent).toEqual("true");
 });
 
@@ -114,12 +114,15 @@ test("`toggle` toggles the state", () => {
     container
   );
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
-  const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
+  const toggleButton = TestUtils.findRenderedDOMComponentWithTag(
+    root,
+    "button"
+  );
 
   expect(span.textContent).toEqual("false");
-  TestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(toggleButton);
   expect(span.textContent).toEqual("true");
-  TestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(toggleButton);
   expect(span.textContent).toEqual("false");
 });
 
@@ -136,10 +139,10 @@ test("state doesn't change when component is controlled", () => {
     container
   );
   const span = TestUtils.findRenderedDOMComponentWithTag(root, "span");
-  const button = TestUtils.findRenderedDOMComponentWithTag(root, "button");
+  const setOnButton = TestUtils.findRenderedDOMComponentWithTag(root, "button");
 
   expect(span.textContent).toEqual("false");
-  TestUtils.Simulate.click(button);
+  TestUtils.Simulate.click(setOnButton);
   expect(span.textContent).toEqual("false");
 });
 
@@ -235,5 +238,6 @@ test("doesn't re-render when the `on` prop doesn't change", () => {
     </OnOff>,
     container
   );
+
   expect(onRender).toHaveBeenCalledTimes(2);
 });
