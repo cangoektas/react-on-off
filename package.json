@@ -10,8 +10,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "rollup --config rollup.config.js",
-    "dev": "npm run build:dev -- --watch",
     "test": "jest --bail",
+    "posttest": "bundlesize",
     "precommit": "lint-staged",
     "prepare": "npm-run-all clean build"
   },
@@ -29,6 +29,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^22.4.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
+    "bundlesize": "^0.17.0",
     "codecov": "^3.0.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
@@ -72,5 +73,9 @@
     "collectCoverageFrom": [
       "src/**/*.js"
     ]
-  }
+  },
+  "bundlesize": [{
+    "path": "dist/index.umd.min.js",
+    "maxSize": "2 kB"
+  }]
 }
