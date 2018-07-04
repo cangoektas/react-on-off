@@ -17,70 +17,69 @@ export default class OnOffCollection extends Component {
     onChange: noop
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.on === undefined || nextProps.on === prevState.context.on) {
-      return null;
-    }
-
-    return {
-      ...prevState,
-      context: { ...prevState.context, on: nextProps.on }
-    };
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.context.on !== nextState.context.on;
+    return this.isControlled()
+      ? this.props.on !== nextProps.on
+      : this.state.on !== nextState.on;
   }
 
-  setOnState = id => {
-    const prevOn = this.state.context.on;
+  isControlled() {
+    return this.props.on !== undefined;
+  }
 
-    this.setState(
-      prevState => ({
-        ...prevState,
-        context: { ...prevState.context, on: id }
-      }),
-      () => id !== prevOn && this.props.onChange(id)
-    );
+  getOnState = () => {
+    return this.isControlled() ? this.props.on : this.state.on;
   };
 
-  setOn = id => this.setOnState(id);
+  setOnState = nextOnId => {
+    const prevOnId = this.getOnState();
+    const stateChanged = prevOnId !== nextOnId;
+    const isControlled = this.isControlled();
 
-  setOff = id => {
-    if (id === this.state.context.on) {
+    if (isControlled && stateChanged) {
+      this.props.onChange(nextOnId);
+    } else if (!isControlled && stateChanged) {
+      this.setState({ on: nextOnId }, () => this.props.onChange(nextOnId));
+    }
+  };
+
+  setOn = nextOnId => this.setOnState(nextOnId);
+
+  setOff = nextOnId => {
+    if (nextOnId === this.state.on) {
       this.setOnState(null);
     }
   };
 
-  toggle = id => {
-    const prevOn = this.state.context.on;
-    const nextOn = id !== prevOn ? id : null;
-    this.setOnState(nextOn);
+  toggle = nextOnId => {
+    const prevOnId = this.getOnState();
+    this.setOnState(prevOnId !== nextOnId ? nextOnId : null);
   };
 
-  registerItem = id => id || String(this.state.idGenerator());
+  registerItem = itemId => itemId || String(this.idGenerator());
 
-  unregisterItem = id => {
-    if (id === this.state.context.on) {
+  unregisterItem = itemId => {
+    if (itemId === this.getOnState()) {
       this.setOnState(null);
     }
   };
+
+  idGenerator = generateId;
 
   state = {
-    idGenerator: generateId,
-    context: {
-      on: this.props.defaultOn,
-      setOn: this.setOn,
-      setOff: this.setOff,
-      toggle: this.toggle,
-      registerItem: this.registerItem,
-      unregisterItem: this.unregisterItem
-    }
+    on: this.props.defaultOn,
+    setOn: this.setOn,
+    setOff: this.setOff,
+    toggle: this.toggle,
+    registerItem: this.registerItem,
+    unregisterItem: this.unregisterItem
   };
 
   render() {
     return (
-      <Provider value={this.state.context}>{this.props.children}</Provider>
+      <Provider value={{ ...this.state, on: this.getOnState() }}>
+        {this.props.children}
+      </Provider>
     );
   }
 }

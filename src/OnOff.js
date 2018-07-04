@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import noop from "./utils/noop";
+
 export default class OnOff extends Component {
   static propTypes = {
     defaultOn: PropTypes.bool,
@@ -11,37 +13,47 @@ export default class OnOff extends Component {
 
   static defaultProps = {
     defaultOn: false,
-    onChange: () => {}
+    onChange: noop
   };
 
-  state = { on: this.props.defaultOn };
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.on == null || nextProps.on === prevState.on) {
-      return null;
-    }
-
-    return { on: nextProps.on };
-  }
+  state = { on: Boolean(this.props.defaultOn) };
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.on !== nextState.on;
+    return this.isControlled()
+      ? this.props.on !== nextProps.on
+      : this.state.on !== nextState.on;
   }
 
-  setOnState = on => {
-    const prevOn = this.state.on;
+  isControlled() {
+    return this.props.on !== undefined;
+  }
 
-    this.setState({ on }, () => on !== prevOn && this.props.onChange(on));
+  getOnState = () => {
+    return this.isControlled() ? Boolean(this.props.on) : this.state.on;
+  };
+
+  setOnState = nextOn => {
+    const prevOn = this.getOnState();
+    const stateChanged = prevOn !== nextOn;
+    const isControlled = this.isControlled();
+
+    if (isControlled && stateChanged) {
+      this.props.onChange(nextOn);
+    } else if (!isControlled && stateChanged) {
+      this.setState({ on: nextOn }, () => this.props.onChange(nextOn));
+    }
   };
 
   setOn = () => this.setOnState(true);
   setOff = () => this.setOnState(false);
-  toggle = () => this.setOnState(!this.state.on);
+  toggle = () => this.setOnState(!this.getOnState());
 
   render() {
+    const on = this.getOnState();
+
     return this.props.children({
-      on: this.state.on,
-      off: !this.state.on,
+      on: on,
+      off: !on,
       setOn: this.setOn,
       setOff: this.setOff,
       toggle: this.toggle
