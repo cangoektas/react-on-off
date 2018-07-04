@@ -74,8 +74,10 @@
       "src/**/*.js"
     ]
   },
-  "bundlesize": [{
-    "path": "dist/index.umd.min.js",
-    "maxSize": "2 kB"
-  }]
+  "bundlesize": [
+    {
+      "path": "dist/index.umd.min.js",
+      "maxSize": "2 kB"
+    }
+  ]
 }
