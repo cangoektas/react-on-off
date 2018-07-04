@@ -7,8 +7,8 @@
   <p align="center">
     <a href="https://travis-ci.org/cangoektas/react-on-off" alt="Build status"><img src="https://img.shields.io/travis/cangoektas/react-on-off.svg?style=flat-square"></a>
   <a href="https://codecov.io/gh/cangoektas/react-on-off" alt="Code coverage"><img src="https://img.shields.io/codecov/c/github/cangoektas/react-on-off.svg?style=flat-square"></a>
-  <a href="https://unpkg.com/react-on-off@^1/dist/" alt="Build size"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/dist/react-on-off.umd.min.js?label=size&style=flat-square"></a>
-  <a href="https://unpkg.com/react-on-off@^1/dist/" alt="Build size gzipped"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/dist/react-on-off.umd.min.js?compression=gzip&label=gzip%20size&style=flat-square"></a>
+  <a href="https://unpkg.com/react-on-off@^1/dist/" alt="Build size"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/dist/index.umd.min.js?label=size&style=flat-square"></a>
+  <a href="https://unpkg.com/react-on-off@^1/dist/" alt="Build size gzipped"><img src="http://img.badgesize.io/https://unpkg.com/react-on-off@^1/dist/index.umd.min.js?compression=gzip&label=gzip%20size&style=flat-square"></a>
   <a href="https://www.npmjs.com/package/react-on-off" alt="npm version"><img src="https://img.shields.io/npm/v/react-on-off.svg?style=flat-square"></a>
   </p>
 </p>
@@ -31,7 +31,7 @@ Many UI components either have a single or multiple on/off states and require
 you to write the same type of stateful React components over and over again.
 It's not hard, but it takes time and duplicates code. Instead, we can extract
 common state requirements into generic, flexible and well-tested components
-and reuse them.
+and reuse them. This is what `react-on-off` is.
 
 ## Inspiration
 
@@ -53,8 +53,8 @@ yarn add react-on-off
 You can also use UMD builds from unpkg:
 
 ```html
-<script src="https://unpkg.com/react-on-off/lib/react-on-off.js"></script>
-<script src="https://unpkg.com/react-on-off/lib/react-on-off.min.js"></script>
+<script src="https://unpkg.com/react-on-off/lib/index.umd.js"></script>
+<script src="https://unpkg.com/react-on-off/lib/index.umd.min.js"></script>
 ```
 
 ## Components
