@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-  - "node"
+  - node
+before_install:
+  - npm install -g greenkeeper-lockfile
+install:
+  - npm install
+before_script:
+  - greenkeeper-lockfile-update
 scripts:
   - npm test
+after_script:
+  - greenkeeper-lockfile-upload
 after_success:
   - npx codecov
