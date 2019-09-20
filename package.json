@@ -30,7 +30,7 @@
     "babel-jest": "^23.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
     "bundlesize": "^0.17.0",
-    "codecov": "^3.0.0",
+    "codecov": "^3.6.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^7.0.4",
